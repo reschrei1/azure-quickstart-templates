@@ -102,6 +102,8 @@ install_java()
     while [ $RETRY -lt $MAX_RETRY ]; do
         log "Retry $RETRY: downloading jdk-8u201-linux-x64.tar.gz"
         wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" https://download.oracle.com/otn-pub/java/jdk/8u201-b09/42970487e3af4f5aa5bca3f542482c60/jdk-8u201-linux-x64.tar.gz
+
+
         if [ $? -ne 0 ]; then
             let RETRY=RETRY+1
         else
@@ -124,6 +126,27 @@ install_java()
         log "Java installation failed"
         exit 1
     fi
+}
+
+
+install_java_openjdk()
+{
+    apt update
+    apt install openjdk-8-jdk openjdk-8-jre
+
+    export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+    export JRE_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre
+    export PATH=$PATH:$JAVA_HOME/bin
+    log "JAVA_HOME: $JAVA_HOME"
+    log "PATH: $PATH"
+
+    java -version
+
+#    cat >> /etc/environment <<EOL
+#        JAVA_HOME= /usr/lib/jvm/java-8-openjdk-amd64
+#        JRE_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre
+#    EOL
+
 }
 
 install_es()
@@ -247,7 +270,8 @@ start_service()
 
 log "starting elasticsearch setup"
 
-install_java
+#install_java
+install_java_openjdk
 install_es
 configure_es
 configure_system
