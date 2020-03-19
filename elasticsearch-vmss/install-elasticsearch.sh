@@ -62,7 +62,7 @@ fi
 
 #Script Parameters
 CLUSTER_NAME="es-azure"
-ES_VERSION="5.1.2"
+ES_VERSION="7.6.1"
 IS_DATA_NODE=1
 
 #Loop through options passed
