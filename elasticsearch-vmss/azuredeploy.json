@@ -91,8 +91,8 @@
     "loadBalancerProbeId": "[concat(variables('loadBalancerId'),'/probes/tcpProbe')]",
     "sshProbeId": "[concat(variables('loadBalancerId'),'/probes/sshProbe')]",
     "subnetName": "[concat(variables('namingInfix'), '-subnet')]",
-    "masterSize": "Standard_DS2_v2",
-    "vmSku": "Standard_DS2_v2",
+    "masterSize": "Standard_DS3_v2",
+    "vmSku": "Standard_DS3_v2",
     "imageReference": {
       "publisher": "Canonical",
       "offer": "UbuntuServer",
@@ -393,7 +393,7 @@
       "type": "Microsoft.Compute/virtualMachineScaleSets",
       "name": "[variables('namingInfix')]",
       "location": "[parameters('location')]",
-      "apiVersion": "2018-06-01",
+      "apiVersion": "2019-07-01",
       "dependsOn": [
         "masterVmLoop",
         "[concat('Microsoft.Network/virtualNetworks/', variables('virtualNetworkName'))]"
