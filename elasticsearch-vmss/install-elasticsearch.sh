@@ -132,7 +132,7 @@ install_java()
 install_java_openjdk()
 {
     apt update
-    apt install openjdk-8-jdk openjdk-8-jre
+    apt install openjdk-8-jdk openjdk-8-jre -y
 
     export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
     export JRE_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre
